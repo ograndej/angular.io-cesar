@@ -33,7 +33,11 @@
     -->
       <td> {{s.name}} </td>
       <td> {{s.phone}} </td>
-      <td><button type="button" class="btn btn-danger" (click)="delete(s)">Remove</button></td>
+      <td>
+        <button type="button" class="btn btn-info" (click)="edit(s)">Edit</button>
+        &nbsp;
+        <button type="button" class="btn btn-danger" (click)="delete(s)">Remove</button>
+      </td>
   </tr>
 </tbody>
 </table>

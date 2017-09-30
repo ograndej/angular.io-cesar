@@ -49,4 +49,12 @@ export class ContactsService {
     return this.http.delete(`${this.url}/${contact._id}`)
       .map(res => res.json());
   }
+
+  //PUT
+  updateContact(contact){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.put(this.url, JSON.stringify(contact), options)
+      .map(res => res.json());
+  }
 }

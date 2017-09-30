@@ -19,6 +19,9 @@ export class ContactsComponent implements OnInit {
   //Lista de contatos
   contacts:Contact[];
 
+  //Contato em Edição
+  contact:Contact;  
+
   //Two way binding dos campos de texto
   inputName = "";
   inputPhone = "";
@@ -54,6 +57,16 @@ export class ContactsComponent implements OnInit {
       let index = this.contacts.indexOf(contact);
       this.contacts.splice(index, 1);
     });
+    this.clearForm();
+  }
+
+  //EDITAR CONTATO
+  edit(contact) {
+
+    this.inputName = contact.name;
+    this.inputPhone = contact.phone;
+    
+    alert("Em implementação");
   }
 
   //INSERIR CONTATO
