@@ -20,7 +20,7 @@ export class ContactsComponent implements OnInit {
   contacts:Contact[];
 
   //Contato em Edição
-  contact:Contact;  
+  contact:Contact = null;  
 
   //Two way binding dos campos de texto
   inputName = "";
@@ -62,11 +62,16 @@ export class ContactsComponent implements OnInit {
 
   //EDITAR CONTATO
   edit(contact) {
-
+    this.contact = contact;
+    console.log(contact._id);
     this.inputName = contact.name;
     this.inputPhone = contact.phone;
-    
-    alert("Em implementação");
+  }
+
+  //CANCELAR EDIÇÃO
+  cancel() {
+    this.contact = null;
+    this.clearForm();
   }
 
   //INSERIR CONTATO
@@ -85,6 +90,28 @@ export class ContactsComponent implements OnInit {
     });
     //Limpar campos do formulário
     this.clearForm();
+    contact = null
+  }
+
+  //ATUALIZAR CONTATO
+  updateContact() {
+    let index = this.contacts.indexOf(this.contact);
+    //Carregamos os dados de inputName e inputPhone para construir nosso objeto Contact
+    this.contact.name = this.inputName;
+    this.contact.phone = this.inputPhone;
+
+    this.contactsService.updateContact(this.contact).subscribe(c => {
+      index = -1;
+      for (var d = 0, len = this.contacts.length; d < len; d += 1) {
+        if (this.contacts[d]._id === this.contact._id) {
+          index = d;
+          break;
+        }
+      }
+      this.contacts[index]  = this.contact
+      this.clearForm();
+      this.contact = null
+    });
   }
 
   // LIMPA OS CAMPOS DO FORMULÁRIO APÓS INSERÇÃO
@@ -94,3 +121,5 @@ export class ContactsComponent implements OnInit {
   }
 
 }
+
+

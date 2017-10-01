@@ -54,7 +54,7 @@ export class ContactsService {
   updateContact(contact){
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.put(this.url, JSON.stringify(contact), options)
+    return this.http.put(`${this.url}/${contact._id}`, JSON.stringify(contact), options)
       .map(res => res.json());
   }
 }

@@ -8,7 +8,9 @@
         (keyup.Enter)="insertContact()" />
 </div>
 
-<button class="btn btn-primary" (click)="insertContact()">Insert</button>
+<button [hidden]="contact != null" class="btn btn-primary" (click)="insertContact()">Insert</button>
+<button [hidden]="contact == null" class="btn btn-success" (click)="updateContact()">Update</button>
+<button [hidden]="contact == null" class="btn btn-warning" (click)="cancel()">Cancel</button>
 
 <br/>
 <br/>
